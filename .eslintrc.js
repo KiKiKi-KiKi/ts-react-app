@@ -29,7 +29,7 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: ['react', '@typescript-eslint', 'unused-imports'],
+  plugins: ['react', '@typescript-eslint', 'unused-imports', 'import'],
   rules: {
     '@typescript-eslint/no-unused-vars': 'off',
     'unused-imports/no-unused-imports': 'error',
@@ -40,6 +40,50 @@ module.exports = {
         varsIgnorePattern: '^_',
         args: 'after-used',
         argsIgnorePattern: '^_',
+      },
+    ],
+    'import/order': [
+      'error',
+      {
+        groups: [
+          'builtin',
+          'external',
+          'internal',
+          ['parent', 'sibling'],
+          'object',
+          'type',
+          'index',
+        ],
+        'newlines-between': 'never',
+        pathGroupsExcludedImportTypes: ['builtin'],
+        alphabetize: { order: 'asc', caseInsensitive: true },
+        pathGroups: [
+          {
+            pattern: 'react**',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: '@reduxjs/**',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: '{@/libs,@/features,@/app}',
+            group: 'internal',
+            position: 'before',
+          },
+          {
+            pattern: '{@/components,@/pages}',
+            group: 'internal',
+            position: 'before',
+          },
+          {
+            pattern: './**.module.css',
+            group: 'index',
+            position: 'after',
+          },
+        ],
       },
     ],
     'newline-before-return': 'error',

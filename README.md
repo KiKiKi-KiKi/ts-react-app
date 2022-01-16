@@ -269,6 +269,88 @@ $ npm i -D eslint-plugin-unused-imports
 
 ---
 
+## Imports order
+
+[eslint-plugin-import](https://github.com/import-js/eslint-plugin-import)
+
+```sh
+$ npm i -D eslint-plugin-import
+```
+
+`.eslintrc.json`
+
+```diff
+{
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "unused-imports",
++   "import"
+  ],
+  "rules": {
++   "import/order": []
+  }
+}
+```
+
+### import rule
+
+[import/order: Enforce a convention in module import order](https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/order.md)
+
+e.g.
+
+```js
+{
+  "rules": {
+    "import/order": [
+      "error",
+      {
+        "groups": [ "builtin", "external","internal", ["parent", "sibling"], "object", "type", "index"
+        ],
+        // never | always | ignore | always-and-inside-groups
+        "newlines-between": "never",
+        // FIXME: ?
+        // > This defines import types that are not handled by configured pathGroups. This is mostly needed when you want to handle path groups that look like external imports.
+        "pathGroupsExcludedImportTypes": ["builtin"],
+        // sort in ascending order & ignore case
+        "alphabetize": { "order": "asc", "caseInsensitive": true },
+        // custom group
+        "pathGroups": [
+          {
+            "pattern": "react**",
+            "group": "external",
+            "position": "before"
+          },
+          {
+            "pattern": "@reduxjs/**",
+            "group": "external",
+            "position": "before"
+          },
+          {
+            "pattern": "{@/libs,@/features,@/app}",
+            "group": "internal",
+            "position": "before"
+          },
+          {
+            "pattern": "{@/components,@/pages}",
+            "group": "internal",
+            "position": "before"
+          },
+          // Import CSS module at last
+          {
+            "pattern": "./**.module.css",
+            "group": "index",
+            "position": "after"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+---
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
