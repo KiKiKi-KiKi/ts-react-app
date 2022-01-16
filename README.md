@@ -351,6 +351,15 @@ e.g.
 
 ---
 
+## :warning: `npm audit` warning
+
+cf. https://zenn.dev/appare45/articles/7f667031aab94b
+
+- :no_good: `npm audit`
+- :ok_person: `npm audit --production`
+
+---
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
