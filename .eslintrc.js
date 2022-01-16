@@ -3,7 +3,14 @@ module.exports = {
         "browser": true,
         "es2021": true
     },
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
+    },
     "extends": [
+        "react-app",
+        "react-app/jest",
         "eslint:recommended",
         "plugin:react/recommended",
         "plugin:@typescript-eslint/recommended"
@@ -21,5 +28,16 @@ module.exports = {
         "@typescript-eslint"
     ],
     "rules": {
+        "newline-before-return": "error",
+        "no-console": "warn",
+        "no-var": "error",
+        "no-dupe-class-members": "error",
+        "object-shorthand": ["error", "always"],
+        "prefer-arrow-callback": "error",
+        "prefer-const": "error",
+        "prefer-spread": "error",
+        "require-yield": "error",
+        // don't need import React
+        "react/react-in-jsx-scope": "off"
     }
 }

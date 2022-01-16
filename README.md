@@ -13,6 +13,32 @@ $ npx eslint --init
 ✔ Would you like to install them now with npm? · No / Yes
 ```
 
+### Merge eslint config to `.eslintrc.js` from `package.json`
+
+`package.json`
+
+```diff
+{
+- "eslintConfig": {
+-   "extends": "react-app",
+-   "react-app/jest",
+- },
+}
+```
+
+`.eslintrc.js`
+
+```diff
+module.export = {
+  "extends": [
++   "extends": "react-app",
++   "react-app/jest",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended"
+  ]
+```
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
