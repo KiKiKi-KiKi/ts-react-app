@@ -1,6 +1,6 @@
 # React + TypeScript App template
 
-## ESLint
+## :rotating_light: ESLint
 
 ```sh
 $ npx eslint --init
@@ -37,6 +37,49 @@ module.export = {
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended"
   ]
+```
+
+## :sparkles: Prettier
+
+[prettier](https://prettier.io/docs/en/install.html)
+
+```sh
+$ npm i -D --save-exact prettier
+$ touch .prettierrc.json
+```
+
+### Prettier with ESLint
+
+> If you use ESLint, install eslint-config-prettier to make ESLint and Prettier play nice with each other. It turns off all ESLint rules that are unnecessary or might conflict with Prettier. There’s a similar config for Stylelint: stylelint-config-prettier  
+> cf. https://prettier.io/docs/en/install.html#eslint-and-other-linters
+
+```sh
+$ npm i -D eslint-config-prettier
+```
+
+`.eslintrc.js`
+
+```diff
+{
+  "extends": [
+    "react-app",
+    "react-app/jest",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
++   "prettier"
+  ],
+```
+
+## Format
+
+```sh
+# ESLint
+$ npm run lint
+# ESLInt --fix
+$ npm run lint:fix
+# ESLint --fix with Prettier format
+$ npm run format
 ```
 
 # Getting Started with Create React App
