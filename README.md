@@ -239,6 +239,36 @@ $ npm i -D eslint-import-resolver-typescript
 
 ---
 
+## Remove unused imports
+
+[eslint-plugin-unused-imports](https://github.com/sweepline/eslint-plugin-unused-imports)
+
+```sh
+$ npm i -D eslint-plugin-unused-imports
+```
+
+`.eslintrc.json`
+
+```diff
+{
+  "plugins": [
+    "react",
+    "@typescript-eslint",
++   "unused-imports"
+  ],
+  "rules": {
++   "@typescript-eslint/no-unused-vars": "off", // or "no-unused-vars": "off",
++   "unused-imports/no-unused-imports": "error",
++   "unused-imports/no-unused-vars": [
++     "warn",
++     { "vars": "all", "varsIgnorePattern": "^_", "args": "after-used", "argsIgnorePattern": "^_" }
++   ]
+  }
+}
+```
+
+---
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
