@@ -9,5 +9,9 @@
   },
   "[markdown]": {
     "files.trimTrailingWhitespace": false
+  },
+  "path-autocomplete.pathMappings": {
+    "@": "${folder}/src",
+    "~": "${folder}/public"
   }
 }

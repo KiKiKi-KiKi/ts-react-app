@@ -1,5 +1,13 @@
 # React + TypeScript App template
 
+## :tractor: DEV
+
+```sh
+$ cp .vscode/settings.sample.json .vscode/settings.json
+$ npm run start
+> open http://localhost:3000/
+```
+
 ## :rotating_light: ESLint
 
 ```sh
@@ -103,6 +111,133 @@ Auto format with file save!
   }
 }
 ```
+
+---
+
+## Path alias
+
+- `@/*` -> `./src/*`
+- `~/*` -> `./public/*`
+
+### tsconfig
+
+```sh
+$ touch tsconfig.paths.json
+```
+
+`tsconfig.paths.json`
+
+```json
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"],
+      "~/*": ["public/*"]
+    }
+  }
+}
+```
+
+`tsconfig.json`
+
+```diff
+{
++ "extends": "./tsconfig.paths.json",
+  "compilerOptions": {
+```
+
+### Webpack path.resolve
+
+[react-app-rewired](https://github.com/timarney/react-app-rewired)
+
+```sh
+$ npm i -D react-app-rewired
+$ touch config-overrides.js
+```
+
+`config-overrides.js`
+
+```js
+const path = require('path');
+
+module.exports = (config) => {
+  config.resolve = {
+    ...config.resolve,
+    alias: {
+      ...config.alias,
+      '@': path.resolve(__dirname, './src'),
+      '~': path.resolve(__dirname, './public'),
+    },
+  };
+
+  return config;
+};
+```
+
+`.eslintignore`
+
+```
+/config-overrides.js
+```
+
+#### Replace react-script to react-app-rewired
+
+`package.json`
+
+```diff
+{
+  "scripts": {
+-   "start": "react-scripts start",
+-   "build": "react-scripts build",
+-   "test": "react-scripts test",
+-   "eject": "react-scripts eject",
++   "start": "react-app-rewired start",
++   "build": "react-app-rewired build",
++   "test": "react-app-rewired test",
++   "eject": "react-app-rewired eject",
+}
+```
+
+### :gear: VSCode settings for auto-completion of path aliases
+
+`.vscode/settings.json`
+
+```diff
+{
++ "path-autocomplete.pathMappings": {
++   "@": "${folder}/src",
++   "~": "${folder}/public"
++ }
+}
+```
+
+### Resolve path alias for ESLint + TypeScript
+
+[eslint-import-resolver-typescript](https://www.npmjs.com/package/eslint-import-resolver-typescript)
+
+```sh
+$ npm i -D eslint-import-resolver-typescript
+```
+
+`.eslintrc.js`
+
+```diff
+{
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
++   "import/resolver": {
++     "typescript": {
++       "project": "./tsconfig.json"
++     }
++   }
+  },
+  "extends": [
+```
+
+---
 
 # Getting Started with Create React App
 
