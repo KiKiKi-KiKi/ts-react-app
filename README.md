@@ -82,6 +82,28 @@ $ npm run lint:fix
 $ npm run format
 ```
 
+### :construction: VSCode settings
+
+Auto format with file save!
+
+`.vscode/setting.json`
+
+```json
+{
+  "files.exclude": {
+    "**/node_modules": true
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "[markdown]": {
+    "files.trimTrailingWhitespace": false
+  }
+}
+```
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
